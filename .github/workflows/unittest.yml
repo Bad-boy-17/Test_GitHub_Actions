@@ -8,7 +8,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "test"
@@ -18,15 +17,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Step 1 Checks-out your from repository, so your job can access it
-      - name: Check out code 
+      - name: Check out code
         uses: actions/checkout@v4
 
       # Step 2 
       - name: Setup Python
-        uses : actions/setup-python@v4
+        uses: actions/setup-python@v4
         with:
-            python-version: '3.11'
+          python-version: "3.11"
 
       # Step 3 : Install dependencies
       - name: Install dependencies
@@ -36,17 +34,17 @@ jobs:
           pip install -r requirements-dev.txt
 
       # Step 4 : Run tests
-      - name : Run Lint checks
-        run : flake8 src tests
+      - name: Run Lint checks
+        run: flake8 src tests
 
-      - name : Run tests with coverage
-        run : coverage run -m pytest
-      
-      - name : Display coverage report
-        run : coverage report
-      
-      - name : Enforce coverage threshold
-        run : coverage report --fail-under=80
+      - name: Run tests with coverage
+        run: coverage run -m pytest
 
-      -name : 
-       run : python app.py &
+      - name: Display coverage report
+        run: coverage report
+
+      - name: Enforce coverage threshold
+        run: coverage report --fail-under=80
+
+      - name: Start flask app
+        run: python app.py &

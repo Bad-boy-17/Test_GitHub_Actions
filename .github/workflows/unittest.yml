@@ -47,3 +47,6 @@ jobs:
       
       - name : Enforce coverage threshold
         run : coverage report --fail-under=80
+
+      -name : 
+       run : python app.py &
